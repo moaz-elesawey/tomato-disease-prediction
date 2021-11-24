@@ -2,7 +2,10 @@
 
 this is a full application with and `api` and `app` that integerates together to allow of uploading an image in order to predict what disease tomato have from it leaves.
 
-#### Tomato Diseases
+you can download the dataset from `kaggle.
+com` [Here](https://www.kaggle.com/noulam/tomato)
+
+### Tomato Diseases
 - **Bacterial spot**
 - **Early blight**
 - **Late blight**
