@@ -1,0 +1,179 @@
+##:kivy
+
+#:import Window kivy.core.window.Window
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+
+<-FullImage>:
+    canvas:
+        Color:
+            rgb: (1, 1, 1)
+        Rectangle:
+            texture: self.texture
+            size: self.width, self.height
+            pos: self.x, self.y
+
+
+<-PredictionImage>:
+    canvas:
+        Color:
+            rgb: (1, 1, 1)
+        RoundedRectangle:
+            texture: self.texture
+            size: self.width, self.height
+            pos: self.x, self.y
+            radius: [dp(15),dp(15),dp(0),dp(0)]
+
+
+<UploadFileCard>:
+    elevation: 1
+    padding: dp(20)
+
+    canvas.before:
+        Color:
+            rgba: (160./255.,160./255.,160./255., .7)
+        RoundedRectangle:
+            size: self.width, self.height
+            pos: self.x, self.y
+            radius: [dp(15),dp(15),dp(15),dp(15)]
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(30)
+
+        canvas.before:
+            Color:
+                rgba: 1,1,1,0
+            Rectangle:
+                size: self.width, self.height
+                pos: self.x, self.y
+            Color:
+                rgba: (1,1,1,1)
+            SmoothLine:
+                width: dp(2)
+                rounded_rectangle: [self.x, self.y, self.width, self.height, dp(15)]
+            SmoothLine:
+                width: dp(2)
+                rounded_rectangle: [self.x+20, self.y+20, self.width-40, self.height-40, dp(15)]
+        Image:
+            source: 'assets/pngegg.png'
+            size_hint: 1, .7
+        MDLabel:
+            size_hint: 1, .6
+            text: 'Choose File...'
+            font_style: 'H6'
+            halign: 'center'
+
+<PredictionCard>:
+    source_image: ''
+    orientation: 'vertical'
+    elevation: 4
+
+    canvas.before:
+        Color:
+            rgba: (150/255,150/255,150/255, .7)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(15)]
+
+    BoxLayout:
+        size_hint: 1, .8
+        canvas.before:
+            Color:
+                rgba: get_color_from_hex('#d2422d')
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(15),dp(15),dp(0),dp(0)]
+        PredictionImage:
+            id: prediction_image
+            source: root.source_image
+
+    BoxLayout:
+        padding: dp(10)
+        orientation: 'vertical'
+        size_hint: 1, .2
+
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(0),dp(0),dp(15),dp(15)]
+        BoxLayout:
+            MDLabel:
+                size_hint_x: .3
+                text: 'Class'
+                halign: 'left'
+                font_size: dp(16)
+                bold: True
+                color: 0,0,0,1
+            MDLabel:
+                id: disease_class
+                text: ''
+                size_hint_x: .7
+                halign: 'right'
+                font_size: dp(16)
+                bold: True
+                color: 0,0,0,1
+
+        BoxLayout:
+            MDLabel:
+                text: 'Confidance'
+                halign: 'left'
+                font_size: dp(16)
+                bold: True
+                color: 0,0,0,1
+            MDLabel:
+                id: confidance
+                text: '99.32%'
+                halign: 'right'
+                font_size: dp(16)
+                bold: True
+                color: 0,0,0,1
+
+
+<ClearCard>:
+    canvas.before:
+        Color:
+            rgba: get_color_from_hex("#f1f1f1")
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(15),dp(15),dp(15),dp(15)]
+
+    MDLabel:
+        size_hint: .7, 1
+        text: 'Clear'
+        font_style: 'H5'
+        bold: True
+        halign: 'center'
+    
+<LoadingCard>:
+    canvas.before:
+        Color:
+            rgba: get_color_from_hex("#f1f1f1")
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(15),dp(15),dp(15),dp(15)]
+
+    MDLabel:
+        id: loading
+        size_hint: .7, 1
+        text: 'Loading....'
+        font_style: 'H5'
+        bold: True
+        halign: 'center'
+
+<CameraCard>:
+    orientation: 'vertical'
+
+    canvas.before:
+        Color:
+            rgba: get_color_from_hex("#f1f1f1")
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(15),dp(15),dp(15),dp(15)]
